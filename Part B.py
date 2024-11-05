@@ -6,11 +6,11 @@ E = 200e9  # Young's modulus in Pascals
 nu = 0.28  # Poisson's ratio
 t = 1 # Thickness in meters
 coords = np.array([[0.29, 0.16], [0.43, 0.26], [0.32, 0.33]])  # Coordinates of triangle nodes (x1, y1), (x2, y2), (x3, y3)
-forces = np.array([540000, 432000, 0, 0, 0, 0])  # Applied nodal forces (F1x, F1y, F2x, F2y, F3x, F3y)
+forces = np.array([[540000], [432000], [0], [0], [0], [0]])  # Applied nodal forces (F1x, F1y, F2x, F2y, F3x, F3y)
 U2x, U2y, U3x, U3y = 0, 0, 0, 0  # Displacement boundary conditions (U2x, U2y, U3x, U3y)
 
 # Analysis type: 'plane_stress' or 'plane_strain'
-analysis_type = 'plane_stress'  # Change this to 'plane_strain' for plane strain analysis
+analysis_type = 'plane_strain'  # Change this to 'plane_strain' for pla1ne strain analysis
 
 # Step 1: Extract node coordinates
 x1, y1 = coords[0]
@@ -67,8 +67,12 @@ else:
 #print("Constitutive matrix, D:\n", D)
 
 # Step 6: Compute the stiffness matrix K using K = t * A * B.T * D * B
+#print("t * A", t * A)
+#print("B.T", B.T*2*A)
+#print("D", D/(E / ((1 + nu) * (1 - 2 * nu))))
+#print("B.T @ D", (B.T@D)/(17072770980000))
 KG = t * A * B.T @ D @ B
-print("Global stiffness matrix, KG:\n", KG)
+#print("Global stiffness matrix, KG:\n", KG)
 
 # Step 7: Apply the boundary conditions to the global stiffness matrix
 # node 2 and 3 are fixed
@@ -76,19 +80,25 @@ bc_indices = [2, 3, 4, 5]  # Indices of the fixed displacements
 K1 = KG.copy()
 K1 = np.delete(K1, bc_indices, axis=0)  # Remove rows
 K1 = np.delete(K1, bc_indices, axis=1)  # Remove columns
-print("Stiffness matrix, K1:\n", K1)
 
 # Step 8: Solve for the nodal displacements using the equation K * U = F
 F = forces[forces != 0]  # Extract the non-zero forces
-U = np.linalg.solve(K1, F)
+U = np.linalg.solve(K1, F)  # Solve for the nodal displacements
+print("Stiffness matrix, K1:\n", K1)
+print("Forces", F)
 print("Nodal displacements, U:\n", U)
-print("F1x, F1y", forces[forces != 0])
-print("U1x, U1y", U[0], U[1])
+
+# # step 8 alternative
+# penalty_value = 1e30  # A very large number to "fix" the displacement
+# for index in bc_indices:
+#     KG[index, index] = penalty_value
+# print("Stiffness matrix, KG:\n", KG)
+# print("Forces", forces)
+# print("Nodal displacements, U:\n", np.linalg.solve(KG, forces))
 
 #Step 9: build the global displacement vector
-U_global = np.zeros(6)
-U_global[0] = U[0]
-U_global[1] = U[1]
+U_global = np.array([[U[0]], [U[1]], [U2x], [U2y], [U3x], [U3y]])
+print("Global displacement vector, U_global:\n", U_global)
 
 #Step 10: Calculate the reaction forces
 F_react = KG @ U_global
