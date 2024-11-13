@@ -23,7 +23,7 @@ plt.plot([np.log10(num) for num in Hex_elements], [disp * 1000 for disp in Hex_q
 plt.plot([np.log10(num) for num in Tet_elements], [disp * 1000 for disp in Tet_lin], label='Tet Linear (C3D4)', marker='^')
 plt.plot([np.log10(num) for num in Tet_elements], [disp * 1000 for disp in Tet_quad], label='Tet Quadratic (C3D10)', marker='^')
 plt.plot([np.log10(num) for num in Wedge_elements], [disp * 1000 for disp in Wedge_lin], label='Wedge Linear (C3D6)', marker='o')
-plt.plot([np.log10(num) for num in Wedge_elements], [disp * 1000 for disp in Wedge_quad], label='Wedge Quadratic (C3D10)', marker='o')
+plt.plot([np.log10(num) for num in Wedge_elements], [disp * 1000 for disp in Wedge_quad], label='Wedge Quadratic (C3D15)', marker='o')
 #plt.axhline(y=0.185, color='red', linestyle='--', label='Analytical solution')
 plt.xlabel('Log_10(N)')
 plt.ylabel('Displacement (mm)')

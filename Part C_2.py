@@ -8,7 +8,7 @@ D = 0.2  # outer diameter in meters
 t = 0.01  # wall thickness in meters
 ri = D / 2 - t  # inner radius in meters
 ro = D / 2  # outer radius in meters
-p_max = 40e6  # max pressure in Pascals (MPa to Pa)
+p_max = 80e6  # max pressure in Pascals (MPa to Pa)
 K_IC = 90e6  # fracture toughness in Pa * sqrt(m)
 C = 1e-36  # Paris law constant in m/cycle (Pa sqrt(m))^m
 m = 4  # Paris' law exponent
@@ -45,5 +45,6 @@ def crack_growth(a_initial, a_final):
 # Probability of Detection function
 def probability_of_detection(a):
     return 1 - np.exp(-(a / a0) ** 4)
-print(probability_of_detection(0.006182))
-print(crack_growth(0.006182, a_max))
+
+print("deltak = ", delta_k(0.01))
+print("sigma = ", sigma)
