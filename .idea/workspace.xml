@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74f538d5-a22c-4d88-b00d-4d56a81a0129" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Part C_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/part A report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part C test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part C_2 test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part C.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part C_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part C_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part C_1B.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part C_2 test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part C_1B test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part C_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part A report.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +35,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/akbarbekmusaev/Summative-code.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/akbarbekmusaev/Summative-code-ASM.git&quot;,
     &quot;accountId&quot;: &quot;9fd5fd93-92f4-4f4e-99c9-ab622d5f76d5&quot;
   }
 }</component>
@@ -56,7 +57,7 @@
     &quot;Python.part A report.executor&quot;: &quot;Run&quot;,
     &quot;Python.test.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;G:/My Drive/University of Bristol/Third year/ASM/Summative report/Figures&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -107,6 +108,10 @@
       <workItem from="1731272796740" duration="1295000" />
       <workItem from="1731274347758" duration="250000" />
       <workItem from="1731313316441" duration="8900000" />
+      <workItem from="1731323660645" duration="1775000" />
+      <workItem from="1731444901167" duration="6000" />
+      <workItem from="1731461050816" duration="27000" />
+      <workItem from="1731488975430" duration="3328000" />
     </task>
     <servers />
   </component>
@@ -118,7 +123,7 @@
     <SUITE FILE_PATH="coverage/Summative_code$Part_C_2.coverage" NAME="Part C_2 Coverage Results" MODIFIED="1731323549802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Summative_code$Part_B_q2.coverage" NAME="Part B q2 Coverage Results" MODIFIED="1730303452331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Summative_code$Part_C.coverage" NAME="Part C Coverage Results" MODIFIED="1730624828348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Summative_code$part_A_report.coverage" NAME="part A report Coverage Results" MODIFIED="1731187836339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Summative_code$part_A_report.coverage" NAME="part A report Coverage Results" MODIFIED="1731490967254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Summative_code$test.coverage" NAME="test Coverage Results" MODIFIED="1730626441381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
