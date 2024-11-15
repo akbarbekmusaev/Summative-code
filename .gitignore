@@ -1,0 +1,51 @@
+# Ignore PyCharm project files
+.idea/
+
+# Ignore Python bytecode and cache files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+env/
+venv/
+ENV/
+VENV/
+
+# Ignore test result files
+*.pytest_cache/
+.tox/
+.coverage
+*.cover
+.hypothesis/
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Ignore compiled Python extensions
+*.so
+*.pyd
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore coverage tool output
+htmlcov/
+coverage.xml
+
+# Ignore mypy output
+.mypy_cache/
+
+# Ignore PyCharm specific logs
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
