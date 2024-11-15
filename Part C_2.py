@@ -46,5 +46,8 @@ def crack_growth(a_initial, a_final):
 def probability_of_detection(a):
     return 1 - np.exp(-(a / a0) ** 4)
 
+def LEFM_limit(a):
+    return K_IC / delta_k(a)
+
 print("cycles", crack_growth(0.01, 0.0887))
 #print("sigma", sigma)
