@@ -49,5 +49,12 @@ def probability_of_detection(a):
 def LEFM_limit(a):
     return K_IC / delta_k(a)
 
+a = np.linspace(0, a_max, 100)
+pod = probability_of_detection(a)
+plt.plot(a, pod)
+plt.xlabel("Crack Length (m)")
+plt.ylabel("Probability of Detection")
+plt.show()
+
 print("cycles", crack_growth(0.01, 0.0887))
 #print("sigma", sigma)
