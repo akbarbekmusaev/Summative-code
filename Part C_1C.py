@@ -62,8 +62,8 @@ def calculate_matrix_D(theta_c, sigma_p):
                   [-np.sin(theta_c), np.cos(theta_c)]])
 
     # Define the matrix B with terms involving sigma_p
-    B = np.array([[-50 + (3/4) * sigma_p, -(np.sqrt(3)/4) * sigma_p],
-                  [-(np.sqrt(3)/4) * sigma_p, 108 + (1/4) * sigma_p]])
+    B = np.array([[-50 + (3/4) * sigma_p, (np.sqrt(3)/4) * sigma_p],
+                  [(np.sqrt(3)/4) * sigma_p, 108 + (1/4) * sigma_p]])
 
     # Perform the matrix multiplication D = R * B * R^T
     D = np.dot(R, np.dot(B, R.T))
@@ -71,35 +71,35 @@ def calculate_matrix_D(theta_c, sigma_p):
     return D
 
 #stress intensity factor
-# def stress_intensity_factor(D):
-#     # Third element expression for opening stress
-#     sigma_crack = D[1,1]
-#     # Crack size
-#     a = 0.005 #m
-#     # Calculate K
-#     K = sigma_crack * np.sqrt(np.pi * a)
-#     return K
-#
-#
-# # Example usage:
-# theta_c = np.linspace(1, 360, 200)  # Adjust resolution as needed
-# sigma_p = np.linspace(-300, 400, 200)  # Adjust resolution as needed
-# theta_c_grid, sigma_p_grid = np.meshgrid(theta_c, sigma_p)
-#
-# max_value = -np.inf
-# max_theta_c = None
-# max_sigma_p = None
-#
-# for i in range(theta_c_grid.shape[0]):
-#     for j in range(theta_c_grid.shape[1]):
-#         D = calculate_matrix_D(theta_c_grid[i, j], sigma_p_grid[i, j])
-#         if D[1, 1] > max_value:
-#             max_value = D[1, 1]
-#             max_theta_c = theta_c_grid[i, j]
-#             max_sigma_p = sigma_p_grid[i, j]
-#
-# print(f"Maximum value of D[1, 1]: {max_value}")
-# print(f"Corresponding theta_c: {max_theta_c}")
-# print(f"Corresponding sigma_p: {max_sigma_p}")
+def stress_intensity_factor(D):
+    # Third element expression for opening stress
+    sigma_crack = D[1,1]
+    # Crack size
+    a = 0.005 #m
+    # Calculate K
+    K = sigma_crack * np.sqrt(np.pi * a)
+    return K
 
-plot_tresca_equivalent_stress(-50, 108, 30, 400, num_points=200)
+
+# Example usage:
+theta_c = np.linspace(1, 360, 200)  # Adjust resolution as needed
+sigma_p = np.linspace(-300, 400, 200)  # Adjust resolution as needed
+theta_c_grid, sigma_p_grid = np.meshgrid(theta_c, sigma_p)
+
+max_value = -np.inf
+max_theta_c = None
+max_sigma_p = None
+
+for i in range(theta_c_grid.shape[0]):
+    for j in range(theta_c_grid.shape[1]):
+        D = calculate_matrix_D(theta_c_grid[i, j], sigma_p_grid[i, j])
+        if D[1, 1] > max_value:
+            max_value = D[1, 1]
+            max_theta_c = theta_c_grid[i, j]
+            max_sigma_p = sigma_p_grid[i, j]
+
+print(f"Maximum value of D[1, 1]: {max_value}")
+print(f"Corresponding theta_c: {max_theta_c}")
+print(f"Corresponding sigma_p: {max_sigma_p}")
+
+#plot_tresca_equivalent_stress(-50, 108, 30, 400, num_points=200)

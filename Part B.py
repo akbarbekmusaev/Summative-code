@@ -72,21 +72,21 @@ else:
 #print("D", D/(E / ((1 + nu) * (1 - 2 * nu))))
 #print("B.T @ D", (B.T@D)/(17072770980000))
 KG = t * A * B.T @ D @ B
-#print("Global stiffness matrix, KG:\n", KG)
+print("Global stiffness matrix, KG:\n", KG)
 
-# Step 7: Apply the boundary conditions to the global stiffness matrix
-# node 2 and 3 are fixed
-bc_indices = [2, 3, 4, 5]  # Indices of the fixed displacements
-K1 = KG.copy()
-K1 = np.delete(K1, bc_indices, axis=0)  # Remove rows
-K1 = np.delete(K1, bc_indices, axis=1)  # Remove columns
-
-# Step 8: Solve for the nodal displacements using the equation K * U = F
-F = forces[forces != 0]  # Extract the non-zero forces
-U = np.linalg.solve(K1, F)  # Solve for the nodal displacements
-print("Stiffness matrix, K1:\n", K1)
-print("Forces", F)
-print("Nodal displacements, U:\n", U)
+# # Step 7: Apply the boundary conditions to the global stiffness matrix
+# # node 2 and 3 are fixed
+# bc_indices = [2, 3, 4, 5]  # Indices of the fixed displacements
+# K1 = KG.copy()
+# K1 = np.delete(K1, bc_indices, axis=0)  # Remove rows
+# K1 = np.delete(K1, bc_indices, axis=1)  # Remove columns
+#
+# # Step 8: Solve for the nodal displacements using the equation K * U = F
+# F = forces[forces != 0]  # Extract the non-zero forces
+# U = np.linalg.solve(K1, F)  # Solve for the nodal displacements
+# print("Stiffness matrix, K1:\n", K1)
+# print("Forces", F)
+# print("Nodal displacements, U:\n", U)
 
 # # step 8 alternative
 # penalty_value = 1e30  # A very large number to "fix" the displacement
@@ -96,15 +96,15 @@ print("Nodal displacements, U:\n", U)
 # print("Forces", forces)
 # print("Nodal displacements, U:\n", np.linalg.solve(KG, forces))
 
-#Step 9: build the global displacement vector
-U_global = np.array([[U[0]], [U[1]], [U2x], [U2y], [U3x], [U3y]])
-print("Global displacement vector, U_global:\n", U_global)
-
-#Step 10: Calculate the reaction forces
-F_react = KG @ U_global
-print("Reaction force F1x, F1y, F2x, F2y, F3x, F3y:\n", F_react)
-
-#Check the resultant forces
-F_res = np.sum(F_react)
-print("Resultant force:", F_res)
+# #Step 9: build the global displacement vector
+# U_global = np.array([[U[0]], [U[1]], [U2x], [U2y], [U3x], [U3y]])
+# print("Global displacement vector, U_global:\n", U_global)
+#
+# #Step 10: Calculate the reaction forces
+# F_react = KG @ U_global
+# print("Reaction force F1x, F1y, F2x, F2y, F3x, F3y:\n", F_react)
+#
+# #Check the resultant forces
+# F_res = np.sum(F_react)
+# print("Resultant force:", F_res)
 
