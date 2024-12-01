@@ -56,17 +56,25 @@ def plot_tresca_equivalent_stress(sigma_x, sigma_y, theta_deg, sigma_p_max, num_
     plt.show()
 
 #crack stress tensor
+def calculate_matrix_B(sigma_p):
+    R = np.array([[np.cos(-np.pi/6), np.sin(-np.pi/6)],
+                  [-np.sin(-np.pi/6), np.cos(-np.pi/6)]])
+
+    # Define the matrix B with terms involving sigma_p
+    A = np.array([[sigma_p, 0],
+                  [0, 0]])
+
+    # Perform the matrix multiplication D = R * B * R^T
+    D = np.dot(R, np.dot(A, R.T))
+
+    return D
 def calculate_matrix_D(theta_c, sigma_p):
     # Define the rotation matrices A and C
     R = np.array([[np.cos(theta_c), np.sin(theta_c)],
                   [-np.sin(theta_c), np.cos(theta_c)]])
 
-    # Define the matrix B with terms involving sigma_p
-    B = np.array([[-50 + (3/4) * sigma_p, (np.sqrt(3)/4) * sigma_p],
-                  [(np.sqrt(3)/4) * sigma_p, 108 + (1/4) * sigma_p]])
-
     # Perform the matrix multiplication D = R * B * R^T
-    D = np.dot(R, np.dot(B, R.T))
+    D = np.dot(R, np.dot(calculate_matrix_B(sigma_p), R.T))
 
     return D
 
@@ -80,26 +88,6 @@ def stress_intensity_factor(D):
     K = sigma_crack * np.sqrt(np.pi * a)
     return K
 
+def calculate_lefm_limit():
 
-# Example usage:
-theta_c = np.linspace(1, 360, 200)  # Adjust resolution as needed
-sigma_p = np.linspace(-300, 400, 200)  # Adjust resolution as needed
-theta_c_grid, sigma_p_grid = np.meshgrid(theta_c, sigma_p)
-
-max_value = -np.inf
-max_theta_c = None
-max_sigma_p = None
-
-for i in range(theta_c_grid.shape[0]):
-    for j in range(theta_c_grid.shape[1]):
-        D = calculate_matrix_D(theta_c_grid[i, j], sigma_p_grid[i, j])
-        if D[1, 1] > max_value:
-            max_value = D[1, 1]
-            max_theta_c = theta_c_grid[i, j]
-            max_sigma_p = sigma_p_grid[i, j]
-
-print(f"Maximum value of D[1, 1]: {max_value}")
-print(f"Corresponding theta_c: {max_theta_c}")
-print(f"Corresponding sigma_p: {max_sigma_p}")
-
-#plot_tresca_equivalent_stress(-50, 108, 30, 400, num_points=200)
+    a = (4 / np.pi) * (stress_intensity_factor(D) / sigma_y) ** 2

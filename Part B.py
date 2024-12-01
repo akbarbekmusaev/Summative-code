@@ -36,8 +36,9 @@ b3 = y1 - y2
 c1 = x3 - x2
 c2 = x1 - x3
 c3 = x2 - x1
-#print("Shape function x-derivative coefficients (b1, b2, b3):", b1, b2, b3)
-#print("Shape function y-derivative coefficients (c1, c2, c3):", c1, c2, c3)
+print("Shape function x-derivative coefficients (a1, a2, a3):", a1, a2, a3)
+print("Shape function x-derivative coefficients (b1, b2, b3):", b1, b2, b3)
+print("Shape function y-derivative coefficients (c1, c2, c3):", c1, c2, c3)
 
 # Step 4: Formulate the strain-displacement matrix B using bi and ci terms
 B = (1 / (2 * A)) * np.array([
@@ -45,7 +46,6 @@ B = (1 / (2 * A)) * np.array([
     [0, c1, 0, c2, 0, c3],
     [c1, b1, c2, b2, c3, b3]
 ])
-#print("Strain-displacement matrix, B:\n", B)
 
 # Step 5: Define the constitutive matrix D based on the analysis type
 if analysis_type == 'plane_stress':
@@ -64,7 +64,7 @@ elif analysis_type == 'plane_strain':
     ])
 else:
     raise ValueError("Invalid analysis type. Choose 'plane_stress' or 'plane_strain'.")
-#print("Constitutive matrix, D:\n", D)
+print("Constitutive matrix, D:\n", D)
 
 # Step 6: Compute the stiffness matrix K using K = t * A * B.T * D * B
 #print("t * A", t * A)
