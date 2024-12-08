@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.optimize import root_scalar
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize_scalar
@@ -16,7 +17,7 @@ a0 = 0.00422  # assumed detection parameter from appendix in meters (example val
 a_initial = 0.001  # initial crack size in meters (example)
 nu = 0.3  # Poisson's ratio
 target_failure_prob = 0.01 # target probability of failure
-sigma_y = 1500  # Example value for σ_y
+sigma_y = 1500e6  # Example value for σ_y
 
 # Pipe axial stress
 sigma = (p_max * ri ** 2) / (ro ** 2 - ri ** 2)
@@ -50,37 +51,30 @@ def probability_of_detection(a):
 #LEFM limit
 def LEFM_limit():
     # Define a range of values for `a` from 0 to `t`
-    a_values = np.linspace(0, t, 500)
+    a_values = np.linspace(0, 0.01, 500)
 
-    K_I = delta_k(a_values)
+    # Calculate the stress intensity factor
+    K_I = np.array([delta_k(a) for a in a_values])
 
     # Calculate the right side of the inequality
     rhs = (4 / np.pi) * (K_I / sigma_y) ** 2
 
-    # Define the inequality limits
-    a_limits = np.where(a_values >= rhs, a_values, np.nan)
-    t_minus_a_limits = np.where((t - a_values) >= rhs, t - a_values, np.nan)
-
     # Plotting
-    plt.plot(a_values, a_limits, label=r'$a \geq \frac{4}{\pi} \left( \frac{K_I}{\sigma_y} \right)^2$', color='blue')
-    plt.plot(a_values, t_minus_a_limits, label=r'$t - a \geq \frac{4}{\pi} \left( \frac{K_I}{\sigma_y} \right)^2$',
-             color='red')
+    plt.plot(a_values, rhs, label=r'$\frac{4}{\pi} \left( \frac{K_I}{\sigma_y} \right)^2$', color='blue')
+    # plt.plot(a_values, a_values, label=r'$a$', color='red')
+    # plt.plot(a_values, t - a_values, label=r'$t - a$', color='green')
 
     # Shading the feasible region
-    plt.fill_between(a_values, rhs, t, where=(a_values >= rhs) & ((t - a_values) >= rhs), color='green', alpha=0.3)
+    #plt.fill_between(a_values, rhs, t, where=(a_values >= rhs) & ((t - a_values) >= rhs), color='green', alpha=0.3)
 
     # Labeling
     plt.xlabel("a")
-    plt.ylabel("t - a")
+    plt.ylabel("Value")
     plt.title("Plot of the Inequality")
     plt.legend()
     plt.grid(True)
     plt.show()
 
-
-# Example usage:
-t = 20  # Example maximum thickness
-LEFM_limit()
-
-print("cycles", crack_growth(0.01, 0.0887))
-#print("sigma", sigma)
+ai = 0.00618
+af = 0.01
+print("crack growth from initial crack size to final crack size: ", crack_growth(ai, af))

@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.graph_objects as go
 
 #equivalent stress total
 def plot_tresca_equivalent_stress(sigma_x, sigma_y, theta_deg, sigma_p_max, num_points=100):
@@ -44,6 +43,10 @@ def plot_tresca_equivalent_stress(sigma_x, sigma_y, theta_deg, sigma_p_max, num_
         von_mises_equivalent_stress = np.sqrt(sigma_1**2 - sigma_1 * sigma_2 + sigma_2**2)
         Von_Mises_stresses.append(von_mises_equivalent_stress)
 
+    tresca_below_400 = [sigma_p for sigma_p, stress in zip(sigma_p_values, tresca_stresses) if stress < 400]
+    von_mises_below_400 = [sigma_p for sigma_p, stress in zip(sigma_p_values, Von_Mises_stresses) if stress < 400]
+    print(f"Range for Tresca stress below 400 MPa: {min(tresca_below_400)} to {max(tresca_below_400)}")
+    print(f"Range for Von Mises stress below 400 MPa: {min(von_mises_below_400)} to {max(von_mises_below_400)}")
 
     # Plot Tresca equivalent stress as a function of sigma_p
     plt.plot(sigma_p_values, tresca_stresses, label="Tresca Equivalent Stress")
@@ -54,6 +57,7 @@ def plot_tresca_equivalent_stress(sigma_x, sigma_y, theta_deg, sigma_p_max, num_
     plt.axhline(y=400, color='k', linestyle='--', label="Yield Stress")
     plt.legend()
     plt.show()
+    plt.ioff()
 
 #crack stress tensor
 def calculate_matrix_D(theta_c, sigma_p):
